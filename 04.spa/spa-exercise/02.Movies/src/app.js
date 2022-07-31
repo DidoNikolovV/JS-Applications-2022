@@ -1,4 +1,3 @@
-import { showView } from './router.js';
 
 // [ X ] improve HTML structure
 // [ X ] create app.js module
@@ -22,11 +21,20 @@ import { showView } from './router.js';
 
 // showView('#home-page');
 
+import { homePage } from './home.js';
+import { loginPage } from './login.js';
+import { registerPage } from './register.js';
+import { createPage } from './create.js';
+import { updateNav } from './util.js';
+
+
+
 const routes = {
     '/': homePage,
     '/login': loginPage,
     '/register': registerPage,
-    '/logout': logoutPage,
+    '/logout': logout,
+    '/create': createPage
 };
 
 
@@ -46,39 +54,13 @@ function onNavigate(e) {
     }
 }
 
-const homeSection = document.querySelector('#home-page');
-const loginSection = document.querySelector('#form-login');
-const registerSection = document.querySelector('#form-sign-up');
-const createSection = document.querySelector('#add-movie');
-const detailsSection = document.querySelector('#add-movie');
-const editSection = document.querySelector('#add-movie');
 
-function homePage() {
-    showView(homeSection);
-}
-
-function loginPage() {
-    showView(loginSection);
-}
-function registerPage() {
-    showView(registerSection);
-}
-function createPage() {
-    showView(createSection);
-}
-
-function detailsPage() {
-    showView(detailsSection);
-}
-
-function editPage() {
-    showView(editSection);
-}
-
-function logoutPage() {
-    alert('logged out');
+function logout() {
+    localStorage.removeItem('user');
+    updateNav();
 }
 
 // Start application in catalog view
+updateNav();
 homePage();
 
