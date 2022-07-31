@@ -11,12 +11,19 @@ export function detailsPage(id) {
 async function displayMovie(id) {
     section.replaceChildren(spinner());
 
-    const movie = await getMovie(id);
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    section.replaceChildren(createMovieCard(movie));
+    const [movie, likes, ownLike] = await Promise.all([
+        getMovie(id),
+        getLikes(id),
+        getOwnLike(id, user)
+    ]);
+
+
+    section.replaceChildren(createMovieCard(movie, user, likes, ownLike));
 }
 
-function createMovieCard(movie) {
+function createMovieCard(movie, user) {
     const element = document.createElement('div');
     element.className = 'container';
     element.innerHTML = `
@@ -30,14 +37,28 @@ function createMovieCard(movie) {
     <div class="col-md-4 text-center">
         <h3 class="my-3 ">Movie Description</h3>
         <p>${movie.description}</p>
-        <a class="btn btn-danger" href="#">Delete</a>
-        <a class="btn btn-warning" href="#">Edit</a>
-        <a class="btn btn-primary" href="#">Like</a>
-        <span class="enrolled-span">Liked 1</span>
+        ${createControls(movie, user, likes, ownLike)}       
     </div>
 </div> `
 
     return element;
+}
+
+function createControls(movie, user, likes, ownLike) {
+    const isOwner = user && user._id == movie._ownerId;
+
+    let controls = [];
+
+    if (isOwner) {
+        controls.push('<a class="btn btn-danger" href="#">Delete</a>');
+        controls.push('<a class="btn btn-warning" href="#">Edit</a>')
+    } else {
+        controls.push('< a class="btn btn-primary" hre ="#"> Like</ >')
+    }
+
+    controls.push(`<span class="enrolled-span">Liked ${likes}</span>`)
+
+    return controls.join('');
 }
 
 async function getMovie(id) {
@@ -47,23 +68,22 @@ async function getMovie(id) {
     return movie;
 }
 
-{/* <div class="container">
-<div class="row bg-light text-dark">
-    <h1>Movie title: Black Widow</h1>
+async function getLikes(id) {
+    const res = await fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22&distinct=_ownerId&count `);
+    const likes = await res.json();
 
-    <div class="col-md-8">
-        <img class="img-thumbnail" src="https://miro.medium.com/max/735/1*akkAa2CcbKqHsvqVusF3-w.jpeg"
-            alt="Movie">
-    </div>
-    <div class="col-md-4 text-center">
-        <h3 class="my-3 ">Movie Description</h3>
-        <p>Natasha Romanoff aka Black Widow confronts the darker parts of her ledger when a dangerous
-            conspiracy
-            with ties to her past arises. Comes on the screens 2020.</p>
-        <a class="btn btn-danger" href="#">Delete</a>
-        <a class="btn btn-warning" href="#">Edit</a>
-        <a class="btn btn-primary" href="#">Like</a>
-        <span class="enrolled-span">Liked 1</span>
-    </div>
-</div>
-</div> */}
+    return likes;
+}
+
+async function getOwnLike(movieId, user) {
+    if (!user) {
+        return false;
+    } else {
+        const userId = user._id;
+
+        const res = await fetch(`http://localhost:3030/data/likes?where=${movieId}%3D%22{movieId}%22%20and%20_ownerId%3D%22${userId}%22 `);
+        const like = await res.json();
+
+        return like.length > 0;
+    }
+}
