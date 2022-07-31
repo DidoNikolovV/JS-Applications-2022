@@ -9,9 +9,8 @@
 // [  ] - create request logic
 // [  ] - DOM manipulation logic
 
-// [  ] catalog
-// [  ] create
-// [  ] login
+// [ X ] catalog
+// [ X ] login
 // [  ] register
 // [  ] create
 // [  ] details

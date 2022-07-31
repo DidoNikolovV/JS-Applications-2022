@@ -26,8 +26,7 @@ export function updateNav() {
         msgContainer.textContent = `Welcome, ${user.email}`;
     } else {
         document.querySelectorAll('.user').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.guest').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.guest').forEach(el => el.style.display = 'inline-block');
         msgContainer.textContent = '';
-
     }
 };
