@@ -4,11 +4,10 @@ const homeSection = document.querySelector('.home');
 const recipeList = homeSection.querySelector('.recipe-list');
 
 export function renderHome() {
-    getRecipes()
-        .then(recipes => {
-            renderRecipes(Object.values(recipes));
-            homeSection.getElementsByClassName.display = 'block';
-        });
+    getRecipes().then(recipes => {
+        renderRecipes(Object.values(recipes));
+        homeSection.getElementsByClassName.display = 'block';
+    });
 }
 
 function renderRecipes(recipes) {

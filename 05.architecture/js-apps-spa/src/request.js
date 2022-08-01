@@ -1,7 +1,7 @@
 import { getToken } from './auth.js';
 
 
-export const request = (method, url, data) => {
+const request = (method, url, data) => {
     let options = {};
     let token = getToken();
 
@@ -15,7 +15,7 @@ export const request = (method, url, data) => {
         }
     }
 
-    if (token) {
+    if (method != 'GET' && token) {
         options.headers['X-Authorization'] = token;
     }
 
@@ -25,4 +25,4 @@ export const request = (method, url, data) => {
 
 export const get = request.bind(null, 'GET');
 
-export const post = request.bind(null, 'POST', data);
+export const post = request.bind(null, 'POST');
