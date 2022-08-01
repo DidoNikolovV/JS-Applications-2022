@@ -1,3 +1,4 @@
+import { createRecipe } from '../api.js';
 import { getToken } from '../auth.js';
 
 const createSection = document.querySelector('.create');
@@ -20,17 +21,9 @@ createForm.addEventListener('submit', (e) => {
         steps,
     };
 
-    fetch('http://localhost:3030/data/recipes', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'X-Authorization': getToken()
-        },
-        body: JSON.stringify(data)
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
+    createRecipe(data)
+        .then(recipe => {
+            console.log(recipe);
             alert('Successful recipe create')
         });
 
