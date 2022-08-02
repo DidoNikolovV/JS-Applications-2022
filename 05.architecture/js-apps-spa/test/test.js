@@ -18,10 +18,11 @@ describe('Custom Test', function () {
         await page.click('input[value=Login')
 
 
-        page.on('dialog', dialog => {
+        page.on('dialog', async dialog => {
             expect(dialog.message()).to.be.equal('successfuly logged in');
+            await dialog.accept()
+            // await browser.close();
         });
-        // await browser.close();
 
     });
 });
