@@ -20,6 +20,7 @@ const links = {
 };
 
 const router = initialize(links);
+router.updateNav();
 
 // Start application in home view
 router.goTo('/');
