@@ -12,7 +12,7 @@ export const navbarTemplate = () => `
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" onClick="addContact()">Employees</button>
+                        <button class="nav-link" onClick="addContact()">Add Contact</button>
                     </li>
                 </ul>
             </div>

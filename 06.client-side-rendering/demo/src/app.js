@@ -15,7 +15,7 @@ window.addContact = function () {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ person: 'Ivan', phone: '088102312' })
+        body: JSON.stringify({ person: 'Stamat', phone: '089102312' })
     })
         .then(res => res.json())
         .then(contact => {
