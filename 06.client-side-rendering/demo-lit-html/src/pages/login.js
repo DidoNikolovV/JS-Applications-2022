@@ -1,4 +1,5 @@
-import { updateAuth } from '../auth.js';
+import { updateAuth, saveUser } from '../auth.js';
+import * as api from '../api.js';
 
 const loginSection = document.querySelector('.login');
 const loginForm = loginSection.querySelector('form');
@@ -10,16 +11,9 @@ loginForm.addEventListener('submit', (e) => {
     let email = formData.get('email');
     let password = formData.get('password');
 
-    fetch('http://localhost:3030/users/login', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({email, password})
-    })
-        .then(res => res.json())
+    api.login(email, password)
         .then(user => {
-            localStorage.setItem('user', JSON.stringify(user));
+            saveUser(user);
             updateAuth();
             alert('successfuly logged in');
         });

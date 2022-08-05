@@ -28,3 +28,7 @@ export function getToken() {
         return user.accessToken;
     }
 }
+
+export function saveUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+}

@@ -1,10 +1,10 @@
-const url = 'http://localhost:3030/data/recipes' 
+import { getRecipes } from '../api.js';
+
 const homeSection = document.querySelector('.home');
 const recipeList = homeSection.querySelector('.recipe-list');
 
 export function renderHome() {
-    fetch(url)
-        .then(res => res.json())
+    getRecipes()
         .then(recipes => {
             renderRecipes(Object.values(recipes));
             homeSection.style.display = 'block';
