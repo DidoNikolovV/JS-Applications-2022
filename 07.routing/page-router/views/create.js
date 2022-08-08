@@ -1,6 +1,6 @@
 import { render, html } from '../node_modules/lit-html/lit-html.js';
 
-const createArticleHandler = async (e) => {
+const createArticleHandler = async (ctx, e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -18,13 +18,11 @@ const createArticleHandler = async (e) => {
     })
 
     const article = await res.json();
-    console.log(article);
-
+    ctx.page.redirect(`/articles/${article._id}`);
 };
 
-
-const createTemplate = () => html`
-    <form @submit=${createArticleHandler}>
+const createTemplate = (ctx) => html`
+    <form @submit=${createArticleHandler.bind({}, ctx)}>
         <div>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" name="title" />
