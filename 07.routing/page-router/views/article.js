@@ -16,7 +16,7 @@ const articleTemplate = (article) => html`
 `;
 
 const fetchArticle = async (articleId) => {
-    const res = await fetch(`http://localhost:3030/jsonstore/articles/${articleId - 1}`)
+    const res = await fetch(`http://localhost:3030/jsonstore/articles/${articleId}`)
     const data = await res.json();
     return data;
 };
