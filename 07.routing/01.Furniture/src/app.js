@@ -5,6 +5,8 @@ import { loginPage } from './views/login.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+import * as api from './api/data.js';
+
 
 
 const root = document.querySelector('.container')
