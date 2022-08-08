@@ -6,7 +6,7 @@ const articleTemplate = (article) => html`
     
         <footer>
             <p>Author: ${article.author}</p>
-            <a href="/articles/${article.id}">Read More...</a>
+            <a href="/articles/${article.id || article._id}">Read More...</a>
         </footer>
     </article>
 
