@@ -1,0 +1,10 @@
+a {
+    margin: 10px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+article {
+    border-bottom: 1px solid black;
+}
