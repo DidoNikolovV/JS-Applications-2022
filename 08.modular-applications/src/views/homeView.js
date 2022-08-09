@@ -8,7 +8,7 @@ const movieTemplate = (movie) => html`
         <div class="card-body">
             <h5 class="card-title">${movie.title}</h5>
             <p class="card-text">${movie.description}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href="#" class="btn btn-primary">Details</a>
         </div>
     </div>
 `

@@ -1,6 +1,20 @@
-import { html } from '../../node_modules/lit-html/lit-html.js';
+import { html, nothing} from '../../node_modules/lit-html/lit-html.js';
 
-const navigationTemplate = (isAuthenticated) => html`
+const guestLinks = html`
+<li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/register">Register</a>
+</li>
+`
+
+const privateLinks =  html `
+<li class="nav-item">
+<a class="nav-link" href="/logout">Logout</a>
+</li>`
+
+export const navigationTemplate = ({user, isAuthenticated}) => html`
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Movies</a>
@@ -16,14 +30,16 @@ const navigationTemplate = (isAuthenticated) => html`
                     <li class="nav-item">
                         <a class="nav-link" href="/collection">My Collection</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-    
+                    ${isAuthenticated ? 
+                        privateLinks : guestLinks
+                    }    
                 </ul>
+                
+                ${isAuthenticated ? html `
+                    <div class="nav-item">
+                        <p class="nav-link disabled">${user.username}</p>
+                    </div>` : nothing}
+
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -32,7 +48,3 @@ const navigationTemplate = (isAuthenticated) => html`
         </div>
     </nav>
 `;
-
-export const navigationView = (ctx) => {
-    return navigationTemplate(ctx.isAuthenticated)
-}
