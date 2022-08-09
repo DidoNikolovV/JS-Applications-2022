@@ -68,7 +68,7 @@ export function createPage(ctx) {
         const formData = [...(new FormData(event.target).entries())];
         const data = formData.reduce((a, [k, v]) => Object.assign(a, { [k]: v.trim() }), {})
 
-        const missing = formData.filter(([k, v]) => k != 'material' && v.trim() == '');
+        const missing = formData.filter(([k, v]) => k != 'material' && v.trim == '');
 
         try {
             if (missing.length > 0) {
