@@ -1,7 +1,8 @@
-import { render, html } from '../../node_modules/lit-html/lit-html.js';
+import { html } from '../../node_modules/lit-html/lit-html.js';
 import * as movieService from '../services/movieService.js';
 
 const movieTemplate = (movie) => html`
+
     <div class="card movie-card" style="width: 200px;">
         <img src=${movie.img} class="card-img-top" alt="...">
         <div class="card-body">
@@ -22,6 +23,7 @@ const homeTemplate = (movies) => html`
 export const homeView = (ctx) => {
     movieService.getAll()
         .then(movies => {
-            render(homeTemplate(movies), document.getElementById('root'))
+            // render(homeTemplate(movies), document.getElementById('root'))
+            ctx.render(homeTemplate(movies));
         });
 };
