@@ -43,6 +43,7 @@ export function loginPage(ctx) {
 
         try {
             await login(email, password);
+            event.target.reset();
             ctx.updateUserNav();
             ctx.page.redirect('/');
         } catch (err) {

@@ -14,34 +14,34 @@ const createTemplate = (onSubmit, errorMsg, errors) => html`
                 ${errorMsg ? html`<div class="form-group error">${errorMsg}</div>` : null}
                 <div class="form-group">
                     <label class="form-control-label" for="new-make">Make</label>
-                    <input class=${'form-control' + (errors.make ? ' is-invalid' : '' )} id="new-make" type="text"
+                    <input class=${'form-control' + (errors.make ? ' is-invalid' : '')} id="new-make" type="text"
                         name="make">
                 </div>
                 <div class="form-group has-success">
                     <label class="form-control-label" for="new-model">Model</label>
-                    <input class=${'form-control' + (errors.model ? ' is-invalid' : '' )} id="new-model" type="text"
+                    <input class=${'form-control' + (errors.model ? ' is-invalid' : '')} id="new-model" type="text"
                         name="model">
                 </div>
                 <div class="form-group has-danger">
                     <label class="form-control-label" for="new-year">Year</label>
-                    <input class=${'form-control' + (errors.year ? ' is-invalid' : '' )} id="new-year" type="number"
+                    <input class=${'form-control' + (errors.year ? ' is-invalid' : '')} id="new-year" type="number"
                         name="year">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="new-description">Description</label>
-                    <input class=${'form-control' + (errors.description ? ' is-invalid' : '' )} id="new-description"
+                    <input class=${'form-control' + (errors.description ? ' is-invalid' : '')} id="new-description"
                         type="text" name="description">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="form-control-label" for="new-price">Price</label>
-                    <input class=${'form-control' + (errors.price ? ' is-invalid' : '' )} id="new-price" type="number"
+                    <input class=${'form-control' + (errors.price ? ' is-invalid' : '')} id="new-price" type="number"
                         name="price">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="new-image">Image</label>
-                    <input class=${'form-control' + (errors.img ? ' is-invalid' : '' )} id="new-image" type="text"
+                    <input class=${'form-control' + (errors.img ? ' is-invalid' : '')} id="new-image" type="text"
                         name="img">
                 </div>
                 <div class="form-group">
@@ -66,9 +66,9 @@ export function createPage(ctx) {
         event.preventDefault();
 
         const formData = [...(new FormData(event.target).entries())];
-        const data = formData.reduce((a, [k, v]) => Object.assign(a, { [k]: v }), {})
+        const data = formData.reduce((a, [k, v]) => Object.assign(a, { [k]: v.trim() }), {})
 
-        const missing = formData.filter(([k, v]) => k != 'material' && v == '');
+        const missing = formData.filter(([k, v]) => k != 'material' && v.trim() == '');
 
         try {
             if (missing.length > 0) {
@@ -84,6 +84,7 @@ export function createPage(ctx) {
             data.price = Number(data.price);
 
             const result = await createItem(data);
+            event.target.reset();
             ctx.page.redirect('/details/' + result._id);
         } catch (err) {
             const message = err.message || err.errors.message;
