@@ -17,6 +17,7 @@ page('/', homeView);
 page('/login', loginView);
 page('/logout', logoutView);
 page('/register', registerView);
-page('/movies/:movieId', movieView)
+page('/movies/:movieId', movieView);
+page('/movies', homeView);
 
 page.start();

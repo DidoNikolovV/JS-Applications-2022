@@ -14,6 +14,7 @@ const movieTemplate = (movie) => html`
 `
 
 const homeTemplate = (movies) => html`
+
     <h1>Movie List</h1>
     <div class="movie-list">
         ${movies.map(m => movieTemplate(m))};
@@ -21,7 +22,8 @@ const homeTemplate = (movies) => html`
 `;
 
 export const homeView = (ctx) => {
-    movieService.getAll()
+    let [key, search] = ctx.querystring.split('=');
+    movieService.getAll(search)
         .then(movies => {
             // render(homeTemplate(movies), document.getElementById('root'))
             ctx.render(homeTemplate(movies));
