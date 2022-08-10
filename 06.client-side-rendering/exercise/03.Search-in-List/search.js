@@ -1,4 +1,4 @@
-import { html, render } from '../node_modules/lit-html/lit-html.js';
+import { html, rcender } from '../node_modules/lit-html/lit-html.js';
 import { towns } from './towns.js';
 
 const searchTemplate = (towns, match) => html`
@@ -15,7 +15,7 @@ const searchTemplate = (towns, match) => html`
 `
 
 const townTemplate = (name, match) => html`
-   <li class=${(match && name.toLowerCase().includes(match.toLowerCase())) ? 'active' : ''}>${name}</li>
+   <li class=${(match && name.toLowerCase().includes(match.toLowerCase())) ? 'active' : '' }>${name}</li>
 `
 
 const main = document.body;

@@ -32,6 +32,22 @@ export const login = (email, password) => {
         });
 };
 
+export const register = (username, email, password) => {
+    return fetch(`${baseUrl}/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+    })
+        .then(res => res.json())
+        .then(user => {
+            save(user);
+
+            return user;
+        });
+};
+
 export const isAuthenticated = () => {
     let accessToken = localStorage.getItem('accessToken');
 

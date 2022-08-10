@@ -4,6 +4,7 @@ import { loginView } from './views/loginView.js';
 import { renderMiddleware } from './middlewares/renderMiddleware.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import { logoutView } from './views/logoutView.js';
+import { registerView } from './views/registerView.js';
 
 // Attach middlewares
 page(authMiddleware);
@@ -14,5 +15,6 @@ page(renderMiddleware);
 page('/', homeView);
 page('/login', loginView);
 page('/logout', logoutView);
+page('/register', registerView);
 
 page.start();
