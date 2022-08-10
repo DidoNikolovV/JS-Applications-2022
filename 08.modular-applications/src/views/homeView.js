@@ -22,8 +22,8 @@ const homeTemplate = (movies) => html`
 `;
 
 export const homeView = (ctx) => {
-    let [key, search] = ctx.querystring.split('=');
-    movieService.getAll(search)
+    let searchParams = new URLSearchParams(ctx.querystring);
+    movieService.getAll(searchParams.get('search'))
         .then(movies => {
             // render(homeTemplate(movies), document.getElementById('root'))
             ctx.render(homeTemplate(movies));
