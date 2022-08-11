@@ -1,4 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import * as recipeService from '../api/recipe.js';
 
 const homeTemplate = () => html`
     <section id="home">
@@ -38,6 +39,8 @@ const homeTemplate = () => html`
     </section>
 `
 
-export function homePage(ctx) {
+export async function homePage(ctx) {
+    const recipes = await recipeService.getAll();
+    ctx.removeLoader();
     ctx.render(homeTemplate());
 }

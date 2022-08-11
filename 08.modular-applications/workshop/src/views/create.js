@@ -18,5 +18,7 @@ const createTemplate = () => html`
 `;
 
 export function createPage(ctx) {
+    ctx.removeLoader();
+
     ctx.render(createTemplate());
 }

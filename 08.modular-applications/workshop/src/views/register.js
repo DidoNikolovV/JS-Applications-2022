@@ -15,5 +15,7 @@ const registerTemplate = () => html`
 `;
 
 export function registerPage(ctx) {
+    ctx.removeLoader();
+
     ctx.render(registerTemplate());
 }

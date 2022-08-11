@@ -52,5 +52,6 @@ const catalogTemplate = () => html`
 `;
 
 export function catalogPage(ctx) {
+    ctx.removeLoader();
     ctx.render(catalogTemplate());
 }

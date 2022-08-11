@@ -19,5 +19,7 @@ const editTemplate = () => html`
 `;
 
 export function editPage(ctx) {
+    ctx.removeLoader();
+
     ctx.render(editTemplate());
 }

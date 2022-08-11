@@ -14,5 +14,7 @@ const loginTemplate = () => html`
 `;
 
 export function loginPage(ctx) {
+    ctx.removeLoader();
+
     ctx.render(loginTemplate());
 }
