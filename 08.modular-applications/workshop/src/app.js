@@ -10,9 +10,13 @@ import { registerPage } from './views/register.js';
 import { editPage } from './views/edit.js';
 
 import * as api from './api/recipe.js';
-import { addLoader } from './middlewares/loader.js';
+import { addSession } from './middlewares/session.js';
+import { updateNav } from './middlewares/navbar.js';
 
-page(addLoader);
+
+
+page(addSession);
+page(updateNav);
 page(decorateContext);
 page('/', homePage);
 page('/catalog', catalogPage);

@@ -53,7 +53,6 @@ const detailsTemplate = () => html`
 `;
 
 export function detailsPage(ctx) {
-    ctx.removeLoader();
 
     ctx.render(detailsTemplate());
 }
