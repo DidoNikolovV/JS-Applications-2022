@@ -12,6 +12,7 @@ import { editPage } from './views/edit.js';
 import * as api from './api/recipe.js';
 import { addSession } from './middlewares/session.js';
 import { updateNav } from './middlewares/navbar.js';
+import { preload } from './middlewares/preload.js';
 
 
 
@@ -20,7 +21,7 @@ page(updateNav);
 page(decorateContext);
 page('/', homePage);
 page('/catalog', catalogPage);
-page('/catalog/:id', detailsPage);
+page('/catalog/:id', preload, detailsPage);
 page('/create', createPage);
 page('/login', loginPage);
 page('/register', registerPage);

@@ -5,7 +5,7 @@ const catalogTemplate = (recipes) => html`
     <section id="catalog">
         <div class="section-title">
             <form id="searchForm">
-                <input type="text" name="search" value="">
+                <input type="text" name="search" .value=${'hello'}>
                 <input type="submit" value="Search">
             </form>
         </div>
@@ -19,9 +19,7 @@ const catalogTemplate = (recipes) => html`
         ${recipes.map(previewTemplate)}
     
         <footer class="section-title">
-            Page 2 of 3
-            <a class="pager" href="/catalog/1">&lt; Prev</a>
-            <a class="pager" href="/catalog/3">Next &gt;</a>
+            Page 1 of 1
         </footer>
     
     </section>
