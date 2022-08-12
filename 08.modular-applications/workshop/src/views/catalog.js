@@ -24,7 +24,7 @@ const pager = (page, pages) => html`
 <header class="section-title">
     Page ${page} of ${pages}
     ${page != 1 ? html`<a class="pager" href="/catalog?page=${page - 1}">&lt; Prev</a>` : nothing}
-    <a class="pager" href="/catalog?page=${page + 1}">Next &gt;</a>
+    ${page < pages ? html`<a class="pager" href="/catalog?page=${page + 1}">Next &gt;</a>` : nothing}
 </header>
 `;
 
