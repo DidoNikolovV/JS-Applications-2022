@@ -1,10 +1,12 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import { createSubmitHandler } from '../util.js';
+import * as recipeService from '../api/recipe.js'
 
-const createTemplate = () => html`
+const createTemplate = (onSubmit) => html`
     <section id="create">
         <article>
             <h2>New Recipe</h2>
-            <form id="createForm">
+            <form @submit=${onSubmit} id="createForm">
                 <label>Name: <input type="text" name="name" placeholder="Recipe name"></label>
                 <label>Image: <input type="text" name="img" placeholder="Image URL"></label>
                 <label class="ml">Ingredients: <textarea name="ingredients"
@@ -19,5 +21,17 @@ const createTemplate = () => html`
 
 export function createPage(ctx) {
 
-    ctx.render(createTemplate());
+    ctx.render(createTemplate(createSubmitHandler(ctx, onSubmit)));
+}
+
+async function onSubmit(ctx, data, event) {
+    const result = await recipeService.create({
+        name: data.name,
+        img: data.img,
+        ingredients: data.ingredients.split('/n').map(l => l.trim()).filter(l => l = ''),
+        steps: data.steps.split('/n').map(l => l.trim()).filter(l => l = ''),
+    });
+
+    event.target.reset();
+    ctx.page.redirect(`/catalog/${result._id}`)
 }

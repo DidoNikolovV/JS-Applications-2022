@@ -26,3 +26,10 @@ export function createSubmitHandler(ctx, handler) {
         handler(ctx, formData, event);
     };
 }
+
+export function parseQuerystring(query = '') {
+    return Object.fromEntries(query
+        .split('&')
+        .map(kvp => kvp.split('=')))
+
+}
