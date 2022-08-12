@@ -12,3 +12,17 @@ export function getAccessToken() {
 export function clearUserData() {
     localStorage.removeItem('user');
 }
+
+export function setUserData(data) {
+    localStorage.setItem('user', JSON.stringify(data));
+}
+
+export function createSubmitHandler(ctx, handler) {
+    return function (event) {
+        event.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(event.target));
+
+        handler(ctx, formData, event);
+    };
+}

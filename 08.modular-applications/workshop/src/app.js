@@ -9,11 +9,16 @@ import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { editPage } from './views/edit.js';
 
-import * as api from './api/recipe.js';
 import { addSession } from './middlewares/session.js';
 import { updateNav } from './middlewares/navbar.js';
 import { preload } from './middlewares/preload.js';
+import { logout } from './api/user.js';
 
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    logout();
+    page.redirect('/');
+});
 
 
 page(addSession);
@@ -29,7 +34,9 @@ page('/edit/:id', editPage);
 
 page.start();
 
-window.api = api;
+
+
+
 
 
 

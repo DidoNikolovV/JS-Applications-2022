@@ -1,10 +1,12 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import { login } from '../api/user.js';
+import { createSubmitHandler } from '../util.js';
 
-const loginTemplate = () => html`
+const loginTemplate = (onSubmit) => html`
     <section id="login">
         <article>
             <h2>Login</h2>
-            <form id="loginForm">
+            <form @submit=${onSubmit} id="loginForm">
                 <label>E-mail: <input type="text" name="email"></label>
                 <label>Password: <input type="password" name="password"></label>
                 <input type="submit" value="Login">
@@ -14,6 +16,15 @@ const loginTemplate = () => html`
 `;
 
 export function loginPage(ctx) {
-
-    ctx.render(loginTemplate());
+    ctx.render(loginTemplate(createSubmitHandler(ctx, onSubmit)));
 }
+
+async function onSubmit(ctx, data, event) {
+    const email = data.email;
+    const password = data.password;
+    await login(email, password);
+    event.target.reset();
+    ctx.page.redirect('/catalog');
+
+}
+

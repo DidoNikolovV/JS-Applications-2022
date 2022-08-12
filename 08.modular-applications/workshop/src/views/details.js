@@ -7,7 +7,7 @@ const detailsTemplate = (recipe) => html`
     <article>
         <h2>${recipe.name}</h2>
         <div class="band">
-            <div class="thumb"><img src="/${recipe.img}"></div>
+            <div class="thumb"><img src=${recipe.img}></div>
             <div class="ingredients">
                 <h3>Ingredients:</h3>
                 <ul>

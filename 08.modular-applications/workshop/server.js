@@ -1344,7 +1344,7 @@
             "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 name: "Easy Lasagna",
-                img: "assets/lasagna.jpg",
+                img: "/assets/lasagna.jpg",
                 ingredients: [
                     "1 tbsp Ingredient 1",
                     "2 cups Ingredient 2",
@@ -1361,7 +1361,7 @@
             "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 name: "Grilled Duck Fillet",
-                img: "assets/roast.jpg",
+                img: "/assets/roast.jpg",
                 ingredients: [
                     "500 g  Ingredient 1",
                     "3 tbsp Ingredient 2",
@@ -1377,7 +1377,7 @@
             "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 name: "Roast Trout",
-                img: "assets/fish.jpg",
+                img: "/assets/fish.jpg",
                 ingredients: [
                     "4 cups Ingredient 1",
                     "1 tbsp Ingredient 2",

@@ -6,7 +6,9 @@ const links = {
     '/create': document.getElementById('createLink'),
     '/login': document.getElementById('loginLink'),
     '/register': document.getElementById('registerLink'),
-}
+    '/logout': document.getElementById('logoutBtn'),
+};
+
 
 export function updateNav(ctx, next) {
     Object.values(links).forEach(l => l.classList.remove('active'));
