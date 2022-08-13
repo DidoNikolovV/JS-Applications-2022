@@ -29,8 +29,17 @@ export const loginView = (ctx) => {
 
         const { email, password } = Object.fromEntries(new FormData(e.currentTarget));
 
-        await authService.login(email, password);
-        ctx.page.redirect('/');
+        try {
+            if (email == '' || password == '') {
+                throw new Error('All fields are required!');
+            }
+
+            await authService.login(email, password);
+            ctx.page.redirect('/');
+        } catch (err) {
+            alert(err);
+        }
+
     }
 
     ctx.render(loginTemplate(submitHandler));

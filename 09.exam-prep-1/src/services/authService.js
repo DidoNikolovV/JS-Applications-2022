@@ -25,3 +25,11 @@ export const login = (email, password) => {
             return user;
         });
 };
+
+export const register = (email, password) => {
+    request.post(`${baseUrl}/register`, { email, password })
+        .then(user => {
+            saveUser(user);
+            return user;
+        });
+};
