@@ -4,7 +4,7 @@ import * as authService from '../services/authService.js';
 
 const loginTemplate = (submitHandler) => html`
 <section id="loginPage">
-    <form @onSubmit=${submitHandler}>
+    <form @submit=${submitHandler}>
         <fieldset>
             <legend>Login</legend>
 
@@ -24,15 +24,13 @@ const loginTemplate = (submitHandler) => html`
 </section>`
 
 export const loginView = (ctx) => {
-    const submitHandler = (e) => {
+    async function submitHandler(e) {
         e.preventDefault();
 
         const { email, password } = Object.fromEntries(new FormData(e.currentTarget));
 
-        authService.login(email, password)
-            .then(() => {
-                ctx.page.redirect('/');
-            })
+        await authService.login(email, password);
+        ctx.page.redirect('/');
     }
 
     ctx.render(loginTemplate(submitHandler));
