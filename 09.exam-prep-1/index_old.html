@@ -4,32 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>My Music Application</title>
-    <link rel="stylesheet" href="/styles/style.css"/>
+    <link rel="stylesheet" href="/styles/style.css" />
 </head>
 
 <body>
 
     <div id="box">
-
-        <!--Navigation-->
-        <header>
-            <nav>
-                <img src="./images/headphones.png">
-                <a href="#">Home</a>
-                <ul>
-                    <!--All user-->
-                    <li><a href="#">Catalog</a></li>
-                    <li><a href="#">Search</a></li>
-                    <!--Only guest-->
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                    <!--Only user-->
-                    <li><a href="#">Create Album</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </nav>
-        </header>
-
         <main id="main-content"></main>
 
         <!--Home Page-->
@@ -44,26 +24,7 @@
             </div>
         </section>
 
-        <!--Login-->
-        <section id="loginPage">
-            <form>
-                <fieldset>
-                    <legend>Login</legend>
 
-                    <label for="email" class="vhide">Email</label>
-                    <input id="email" class="email" name="email" type="text" placeholder="Email">
-
-                    <label for="password" class="vhide">Password</label>
-                    <input id="password" class="password" name="password" type="password" placeholder="Password">
-
-                    <button type="submit" class="login">Login</button>
-
-                    <p class="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
-                    </p>
-                </fieldset>
-            </form>
-        </section>
 
         <!--Registration-->
         <section id="registerPage">
@@ -78,7 +39,8 @@
                     <input id="password" class="password" name="password" type="password" placeholder="Password">
 
                     <label for="conf-pass" class="vhide">Confirm Password:</label>
-                    <input id="conf-pass" class="conf-pass" name="conf-pass" type="password" placeholder="Confirm Password">
+                    <input id="conf-pass" class="conf-pass" name="conf-pass" type="password"
+                        placeholder="Confirm Password">
 
                     <button type="submit" class="register">Register</button>
 
@@ -106,7 +68,8 @@
                         <input id="price" name="price" class="price" type="text" placeholder="Price">
 
                         <label for="releaseDate" class="vhide">Release date</label>
-                        <input id="releaseDate" name="releaseDate" class="releaseDate" type="text" placeholder="Release date">
+                        <input id="releaseDate" name="releaseDate" class="releaseDate" type="text"
+                            placeholder="Release date">
 
                         <label for="artist" class="vhide">Artist</label>
                         <input id="artist" name="artist" class="artist" type="text" placeholder="Artist">
@@ -197,7 +160,8 @@
                         <input id="price" name="price" class="price" type="text" value="12.80">
 
                         <label for="releaseDate" class="vhide">Release date</label>
-                        <input id="releaseDate" name="releaseDate" class="releaseDate" type="text" value="October 1, 2021">
+                        <input id="releaseDate" name="releaseDate" class="releaseDate" type="text"
+                            value="October 1, 2021">
 
                         <label for="artist" class="vhide">Artist</label>
                         <input id="artist" name="artist" class="artist" type="text" value="Brandi Carlile">
@@ -277,12 +241,6 @@
                 <p class="no-result">No result.</p>
             </div>
         </section>
-
-        <footer>
-            <div>
-                &copy;SoftUni Team 2021. All rights reserved.
-            </div>
-        </footer>
     </div>
 </body>
 
