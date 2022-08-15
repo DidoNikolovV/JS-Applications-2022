@@ -8,8 +8,7 @@ import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { registerView } from './views/register.js';
 
-import * as api from './api/user.js';
-window.api = api;
+import { logout } from './api/user.js';
 
 page(addRender);
 page('/', homeView);
@@ -19,6 +18,12 @@ page('/register', registerView);
 page('/create', createView);
 page('/details/:id', detailsView);
 page('/edit/:id', editView);
+page('/logout', onLogout)
 
 page.start();
+
+function onLogout(ctx) {
+    logout();
+    ctx.page.redirect('/');
+}
 
