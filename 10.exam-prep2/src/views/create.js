@@ -1,8 +1,12 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
-const createTemplate = () => html`
+import * as gamesService from '../api/games.js';
+import { createSubmitHandler } from '../util.js';
+
+
+const createTemplate = (onSubmit) => html`
 <section id="create-page" class="auth">
-    <form id="create">
+    <form @submit=${onSubmit} id="create">
         <div class="container">
 
             <h1>Create Game</h1>
@@ -27,6 +31,25 @@ const createTemplate = () => html`
 `
 
 
-export function createView(ctx) {
-    ctx.render(createTemplate());
+export async function createView(ctx) {
+    ctx.render(createTemplate(createSubmitHandler(ctx, onSubmit)));
 }
+
+async function onSubmit(ctx, data, event) {
+    if (Object.values(data).some(f => f == '')) {
+        return alert('All fields are required!');
+    }
+
+    const game = {
+        title: data.title,
+        category: data.category,
+        maxLevel: data.maxLevel,
+        imageUrl: data.imageUrl,
+        summary: data.summary
+    }
+
+    await gamesService.create(game);
+    event.target.reset();
+    ctx.page.redirect('/');
+}
+
