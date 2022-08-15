@@ -8,6 +8,9 @@ import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { registerView } from './views/register.js';
 
+import * as api from './api/games.js';
+window.api = api;
+
 page(addRender);
 page('/', homeView);
 page('/catalog', catalogView);
@@ -18,3 +21,4 @@ page('/details/:id', detailsView);
 page('/edit/:id', editView);
 
 page.start();
+
