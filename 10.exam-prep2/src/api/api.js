@@ -1,8 +1,25 @@
-import { clearUserData, getUserData, setUserData } from "../util.js";
+import { clearUserData, getAccessToken, getUserData, setUserData } from "../util.js";
 
 const host = 'http://localhost:3030';
 
-async function request(url, options) {
+async function request(method, url, options) {
+    const options = {
+        method,
+        headers: {}
+    }
+
+    const token = getAccessToken();
+
+    if (token) {
+        options.headers['X-Authorization'] = token;
+    }
+
+
+    if (data) {
+        options.headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(data);
+    }
+
     try {
         const response = await fetch(host + url, options);
 
@@ -24,25 +41,12 @@ async function request(url, options) {
         throw err;
     }
 }
-function createOptions(method = 'get', data) {
-    const options = {
-        method,
-        headers: {}
-    }
 
-    if (data != undefined) {
-        options.headers['Content-Type'] = 'application/json';
-        options.body = JSON.stringify(data);
-    }
+export const get = request.bind(null, 'get');
+export const post = request.bind(null, 'post');
+export const put = request.bind(null, 'put');
+export const del = request.bind(null, 'del');
 
-    const userData = getUserData();
-
-    if (userData) {
-        options.headers['X-Authorization'] = userData.token;
-    }
-
-    return options;
-}
 
 export async function get(url) {
     return request(url, createOptions());
@@ -51,11 +55,9 @@ export async function get(url) {
 export async function post(url, data) {
     return request(url, createOptions('post', data));
 }
-
 export async function put(url, data) {
     return request(url, createOptions('put', data));
 }
-
 export async function del(url) {
     return request(url, createOptions('delete'));
 }
@@ -68,9 +70,10 @@ export async function login(email, password) {
         password: result.password,
         id: result._id,
         token: result.accessToken
-    };
+    }
 
     setUserData(userData);
+    return result;
 }
 
 export async function register(email, password) {
