@@ -8,7 +8,7 @@ import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { registerView } from './views/register.js';
 
-import * as api from './api/games.js';
+import * as api from './api/user.js';
 window.api = api;
 
 page(addRender);

@@ -1,8 +1,10 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import { createSubmitHandler } from '../util.js';
+import * as userService from '../api/user.js';
 
-const loginTemplate = () => html`
+const loginTemplate = (onSubmit) => html`
 <section id="login-page" class="auth">
-    <form id="login">
+    <form @submit=${onSubmit} id="login">
 
         <div class="container">
             <div class="brand-logo"></div>
@@ -22,5 +24,11 @@ const loginTemplate = () => html`
 `
 
 export function loginView(ctx) {
-    ctx.render(loginTemplate());
+    ctx.render(loginTemplate(createSubmitHandler(ctx, onSubmit)));
+}
+
+async function onSubmit(ctx, data, event) {
+    await userService.login(data.email, data.password);
+    event.target.reset();
+    ctx.page.redirect('/');
 }
