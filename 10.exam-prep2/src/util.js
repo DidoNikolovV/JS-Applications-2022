@@ -1,5 +1,5 @@
 export function getUserData() {
-    return JSON.parse(sessionStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user'));
 }
 
 export function getAccessToken() {
@@ -12,11 +12,11 @@ export function getAccessToken() {
 }
 
 export function clearUserData() {
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
 }
 
 export function setUserData(data) {
-    sessionStorage.setItem('user', JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(data));
 }
 
 export function createSubmitHandler(ctx, handler) {
