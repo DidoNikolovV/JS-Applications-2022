@@ -1,8 +1,10 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as gamesService from '../api/games.js';
+import { commentFormView } from './commentForm.js';
+import { commentsView } from './comments.js';
 
-const detailsTemplate = (game, onDelete) => html`
+const detailsTemplate = (game, commentsSection, commentFormSection, onDelete) => html`
 <section id="game-details">
     <h1>Game Details</h1>
     <div class="info-section">
@@ -19,18 +21,7 @@ const detailsTemplate = (game, onDelete) => html`
         </p>
 
 
-        <!-- Bonus ( for Guests and Users ) -->
-        <!--<div class="details-comments">
-            <h2>Comments:</h2>
-            <ul>
-                <li class="comment">
-                    <p>Content: I rate this one quite highly.</p>
-                </li>
-                <li class="comment">
-                    <p>Content: The best game.</p>
-                </li>
-            <p class="no-comment">No comments.</p>
-        </div> -->
+        ${commentsSection}
 
         <!-- Edit/Delete buttons ( Only for creator of this game )  -->
         ${game.isOwner ? html`<div class="buttons">
@@ -41,28 +32,25 @@ const detailsTemplate = (game, onDelete) => html`
     </div>
 
     <!-- Bonus -->
-    <!--
-    <article class="create-comment">
-        <label>Add new comment:</label>
-        <form class="form">
-            <textarea name="comment" placeholder="Comment......"></textarea>
-            <input class="btn submit" type="submit" value="Add Comment">
-        </form>
-    </article>
-    -->
+    ${commentFormSection}
 
 </section>
 `
 
 export async function detailsView(ctx) {
     const gameId = ctx.params.id;
-    const game = await gamesService.getById(gameId);
+    const [game, commentsSection] = await Promise.all([
+        gamesService.getById(gameId),
+        commentsView(gameId)
+    ]);
+
 
     if (ctx.user) {
         game.isOwner = ctx.user._id == game._ownerId;
     }
+    const commentFormSection = commentFormView(ctx, game.isOwner);
 
-    ctx.render(detailsTemplate(game, onDelete));
+    ctx.render(detailsTemplate(game, commentsSection, commentFormSection, onDelete));
 
     async function onDelete() {
         const choice = confirm(`Are you sure you want to delete ${game.title}?`);
