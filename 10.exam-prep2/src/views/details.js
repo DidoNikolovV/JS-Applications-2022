@@ -2,7 +2,7 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as gamesService from '../api/games.js';
 
-const detailsTemplate = (game) => html`
+const detailsTemplate = (game, onDelete) => html`
 <section id="game-details">
     <h1>Game Details</h1>
     <div class="info-section">
@@ -35,7 +35,7 @@ const detailsTemplate = (game) => html`
         <!-- Edit/Delete buttons ( Only for creator of this game )  -->
         ${game.isOwner ? html`<div class="buttons">
             <a href="/edit/${game._id}" class="button">Edit</a>
-            <a href="javascript:void(0)" class="button">Delete</a>
+            <a @click=${onDelete} href="javascript:void(0)" class="button">Delete</a>
         </div>` : nothing}
 
     </div>
@@ -62,5 +62,13 @@ export async function detailsView(ctx) {
         game.isOwner = ctx.user._id == game._ownerId;
     }
 
-    ctx.render(detailsTemplate(game));
+    ctx.render(detailsTemplate(game, onDelete));
+
+    async function onDelete() {
+        const choice = confirm(`Are you sure you want to delete ${game.title}?`);
+        if (choice) {
+            await gamesService.deleteById(gameId);
+            ctx.page.redirect('/');
+        }
+    }
 }
