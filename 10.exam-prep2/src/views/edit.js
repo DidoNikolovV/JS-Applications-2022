@@ -1,5 +1,6 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 import * as gamesService from '../api/games.js';
+import { createSubmitHandler } from '../util.js';
 
 
 const editTemplate = (game, onSubmit) => html`
@@ -34,6 +35,26 @@ export async function editView(ctx) {
     const game = await gamesService.getById(gameId);
 
 
-    ctx.render(editTemplate(game));
+    ctx.render(editTemplate(game, createSubmitHandler(ctx, onSubmit)));
+}
+
+async function onSubmit(ctx, data, event) {
+    const gameId = ctx.params.id;
+
+    if (Object.values(data).some(f => f == '')) {
+        return alert('All fields are required!');
+    }
+
+    const game = {
+        title: data.title,
+        category: data.category,
+        maxLevel: data.maxLevel,
+        imageUrl: data.imageUrl,
+        summary: data.summary
+    }
+
+    await gamesService.update(gameId, game);
+    event.target.reset();
+    ctx.page.redirect(`/details/${gameId}`);
 }
 
