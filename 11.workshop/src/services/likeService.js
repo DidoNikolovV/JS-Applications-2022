@@ -7,4 +7,11 @@ export const getMovieLikes = (movieId) => {
     return request.get(`${baseUrl}?${querystring}`);
 };
 
-export const like = (movieId) => request.post(baseUrl, { movieId }) 
+export const getOne = (movieId, userId) => {
+    let query = encodeURIComponent(`movieId="${movieId}" AND _ownerId="${userId}"`);
+    return request.get(`${baseUrl}?where=${query}&pageSize=1`)
+        .then(result => result[0]);
+}
+
+export const like = (movieId) => request.post(baseUrl, { movieId })
+export const unLike = (likeId) => request.del(`${baseUrl}/${likeId}`);

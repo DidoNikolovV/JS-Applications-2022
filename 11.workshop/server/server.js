@@ -1484,7 +1484,6 @@
         },
         movies: {
             "1": {
-                likes: 0,
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 title: "Black Widow",
                 description: "Natasha Romanoff aka Black Widow confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Comes on the screens 2020.",
@@ -1493,7 +1492,6 @@
                 _id: "1240549d-f0e0-497e-ab99-eb8f703713d7"
             },
             "2": {
-                likes: 0,
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
                 title: "Wonder Woman 1984",
                 description: "Diana must contend with a work colleague and businessman, whose desire for extreme wealth sends the world down a path of destruction, after an ancient artifact that grants wishes goes missing.",
@@ -1502,7 +1500,6 @@
                 _id: "143e5265-333e-4150-80e4-16b61de31aa0"
             },
             "3": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "The Shawshank Redemption",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1511,7 +1508,6 @@
                 _id: "a9bae6d8-793e-46c4-a9db-deb9e3484909"
             },
             "4": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "The Godfather",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1521,7 +1517,6 @@
             },
 
             "5": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "The Godfather: Part II",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1531,7 +1526,6 @@
             },
 
             "6": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Pulp Fiction",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1542,7 +1536,6 @@
             ,
 
             "7": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Pulp Fiction",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1553,7 +1546,6 @@
             ,
 
             "8": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Pulp Fiction",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
@@ -1564,7 +1556,6 @@
             ,
 
             "9": {
-                likes: 0,
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Pulp Fiction",
                 description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
