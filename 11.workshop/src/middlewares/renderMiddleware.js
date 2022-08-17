@@ -10,6 +10,10 @@ const ctxRender = (ctx, templateResult) => {
         <main>
             ${templateResult}
         </main>
+        
+        <footer class="footer">
+            <p>All rights reserved &copy; SoftUni 2022</p>
+        </footer>
     `;
 
     render(layout, root)

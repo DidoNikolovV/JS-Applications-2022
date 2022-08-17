@@ -1,4 +1,7 @@
+import * as request from './requester.js';
 const baseUrl = 'http://localhost:3030/data/movies';
+
+
 
 export const getAll = (search) => {
     let querystring = '';
@@ -12,3 +15,4 @@ export const getAll = (search) => {
 export const getOne = (movieId) => {
     return fetch(`${baseUrl}/${movieId}`).then(res => res.json());
 };
+

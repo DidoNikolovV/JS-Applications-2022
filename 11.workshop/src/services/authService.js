@@ -1,17 +1,11 @@
 const baseUrl = 'http://localhost:3030/users'
 
 
-// accessToken: "486bccddf7aeb8b13a405ec289f4b71015283a3e2550535584545a89e589b074"
-// email: "peter@abv.bg"
-// username: "Peter"
-// _id: "35c62d76-8152-4626-8712-eeb96381bea8"
+const USER_KEY = 'user';
 
 const save = (user) => {
     if (user) {
-        localStorage.setItem('accessToken', user.accessToken)
-        localStorage.setItem('email', user.email)
-        localStorage.setItem('username', user.username)
-        localStorage.setItem('_id', user._id)
+        localStorage.setItem(USER_KEY, JSON.stringify(user));
     }
 };
 
@@ -49,22 +43,26 @@ export const register = (username, email, password) => {
 };
 
 export const isAuthenticated = () => {
-    let accessToken = localStorage.getItem('accessToken');
+    let user = localStorage.getItem(USER_KEY);
 
-    return Boolean(accessToken);
+    return Boolean(user.accessToken);
 }
 
 export const getUser = () => {
-    let username = localStorage.getItem('username');
-    let email = localStorage.getItem('email');
+    let serializedUser = localStorage.getItem(USER_KEY);
 
-    let user = {
-        username,
-        email
-    };
+    if (serializedUser) {
+        let user = JSON.parse(serializedUser);
 
-    return user;
+        return user;
+    }
 }
+
+export const getToken = () => {
+    let user = getUser();
+    return user?.accessToken;
+}
+
 
 export const logout = () => {
     let accessToken = localStorage.getItem('accessToken');
