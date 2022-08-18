@@ -1,4 +1,4 @@
-import { html } from '../../node_modules/lit-html/lit-html.js';
+import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as movieService from '../services/movieService.js';
 import { movieCardTemplate } from './templates/movieCardTemplate.js';
@@ -14,9 +14,9 @@ const homeTemplate = (movies, page) => html`
     </div>
     <nav class="pagination" aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="/movies?page=${previousPage(page)}">Previous</a></li>
+            <li class="page-item ${page == 1 ? 'disabled' : nothing}"><a class="page-link" href="/movies?page=${previousPage(page)}">Previous</a></li>
             ${paginationBuilder(page).map(x => 
-                html `<li class="page-item"><a class="page-link" href="/movies?page=${x}">${x}</a></li>
+                html `<li class="page-item ${page == x ? 'active' : nothing}"><a class="page-link" href="/movies?page=${x}">${x}</a></li>
                 `
             )}
             <li class="page-item"><a class="page-link" href="/movies?page=${nextPage(page)}">Next</a></li>
