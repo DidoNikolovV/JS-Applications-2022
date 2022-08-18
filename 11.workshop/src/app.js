@@ -11,6 +11,12 @@ import { movieView } from './views/movieView.js';
 page(authMiddleware);
 page(renderMiddleware);
 
+// const getLikes = async (ctx, next) => {
+//     let likes = await likeService.getMovieLikes(ctx.params.movieId);
+
+//     ctx.likes = likes;
+//     next();
+// }
 
 // Attach page handlers
 page('/', homeView);
